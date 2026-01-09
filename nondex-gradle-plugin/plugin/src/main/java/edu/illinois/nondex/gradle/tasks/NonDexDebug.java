@@ -12,6 +12,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.gradle.api.internal.tasks.testing.JvmTestExecutionSpec;
 import org.gradle.api.internal.tasks.testing.TestExecuter;
 import org.gradle.api.tasks.testing.Test;
+import org.gradle.internal.jvm.JavaModuleDetector;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -25,8 +26,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import javax.inject.Inject;
 
-public class NonDexDebug extends AbstractNonDexTest {
+public abstract class NonDexDebug extends AbstractNonDexTest {
 
     static final String NAME = "nondexDebug";
     private final List<String> executions = new LinkedList<>();
@@ -341,4 +343,7 @@ public class NonDexDebug extends AbstractNonDexTest {
             return null;
         }
     }
+
+    @Inject
+    protected abstract JavaModuleDetector getJavaModuleDetector();
 }

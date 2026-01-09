@@ -4,10 +4,12 @@ import edu.illinois.nondex.gradle.internal.NonDexTestExecuter;
 import org.gradle.api.internal.tasks.testing.JvmTestExecutionSpec;
 import org.gradle.api.internal.tasks.testing.TestExecuter;
 import org.gradle.api.tasks.testing.Test;
+import org.gradle.internal.jvm.JavaModuleDetector;
 
+import javax.inject.Inject;
 import java.lang.reflect.Method;
 
-public class NonDexTest extends AbstractNonDexTest {
+public abstract class NonDexTest extends AbstractNonDexTest {
 
     static final String NAME = "nondexTest";
 
@@ -46,4 +48,7 @@ public class NonDexTest extends AbstractNonDexTest {
             throw new RuntimeException(e);
         }
     }
+
+    @Inject
+    protected abstract JavaModuleDetector getJavaModuleDetector();
 }
